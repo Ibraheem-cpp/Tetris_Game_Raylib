@@ -1,20 +1,24 @@
 #include <iostream>
 #include "raylib.h"
+#include "grid.h"
 using namespace std;
 
 int main()
 {
-    const int width = 500;
-    const int height = 500;
+    Grid grid;
+    const int Height = grid.getCellSize() * grid.getRows();
+    const int Width = grid.getCellSize() * grid.getCols();
 
     SetTargetFPS(60);
-    InitWindow(width, height, "Tetris Game");
+    InitWindow(Width, Height, "Tetris Game");
+
+    grid.printGrid();
 
     while (!WindowShouldClose()) {
 
         BeginDrawing();
-        ClearBackground(YELLOW);
-        DrawCircle(width / 2, height / 2, 15.0, RED);
+        ClearBackground(DARKBLUE);
+       
         EndDrawing();
     }
 
