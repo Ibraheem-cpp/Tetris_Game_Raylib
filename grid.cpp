@@ -1,5 +1,6 @@
 #include <iostream>
 #include "grid.h"
+#include "raylib.h"
 
 using namespace std;
 
@@ -21,6 +22,7 @@ void Grid::initializeGrid() {
 			this->grid[i][j] = 0;
 		}
 	}
+
 }
 
 void Grid::printGrid() const {
@@ -29,6 +31,15 @@ void Grid::printGrid() const {
 			cout << this->grid[i][j] << " ";
 		}
 		cout << endl;
+	}
+}
+
+void Grid::DrawGrid() const {
+	for (int i = 0; i < this->numRows; i++) {
+		for (int j = 0; j < this->numCols; j++) {
+			int cellValue = this->grid[i][j];
+			DrawRectangle(this->cellSize * j +1, this->cellSize * i + 1, this->cellSize - 1, this->cellSize - 1, this->colors[cellValue]);
+		}
 	}
 }
 
@@ -52,4 +63,5 @@ Grid::~Grid() {
 	}
 
 	delete[] this->grid;
+	this->grid = nullptr;
 }
