@@ -14,14 +14,14 @@ int main()
     SetTargetFPS(60);
     InitWindow(Width, Height, "Tetris Game");
 
-    L_Tetromino Lblock;
+    T_Tetromino block;
 
     while (!WindowShouldClose()) {
 
         BeginDrawing();
         ClearBackground(BLACK);
         grid.DrawGrid();
-        Lblock.Draw();
+        block.Draw();
         EndDrawing();
     }
 
