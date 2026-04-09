@@ -2,6 +2,7 @@
 #include <vector>
 #include "raylib.h"
 #include "grid.h"
+#include "tetrominos.h"
 using namespace std;
 
 int main()
@@ -13,11 +14,14 @@ int main()
     SetTargetFPS(60);
     InitWindow(Width, Height, "Tetris Game");
 
+    L_Tetromino Lblock;
+
     while (!WindowShouldClose()) {
 
         BeginDrawing();
         ClearBackground(BLACK);
         grid.DrawGrid();
+        Lblock.Draw();
         EndDrawing();
     }
 

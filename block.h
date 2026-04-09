@@ -7,9 +7,14 @@
 
 class Block {
 private:
-	int id;
 	int rotationState;
+	int cellSize;
 protected:
+	int id;
 	std::map<int, std::vector<Position>> cells;
 	std::vector<Color> colors = { DARKGRAY, BLUE, YELLOW, PINK, GREEN, ORANGE, PURPLE, RED };
+public:
+	Block();
+
+	void Draw();
 };

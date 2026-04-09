@@ -24,12 +24,24 @@
     <ClCompile Include="block.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Position.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tetrominos.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="grid.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="block.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Position.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tetrominos.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
