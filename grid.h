@@ -14,6 +14,7 @@ public:
 	void initializeGrid();
 	void printGrid() const;
 	void DrawGrid() const;
+	bool isOutOfBounds(int row, int col);
 
 	int getRows() const;
 	int getCols() const;

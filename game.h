@@ -18,6 +18,9 @@ public:
 	std::vector<Block> getAllBlocks();
 	Block getRandomBlock();
 	void Draw();
+	void checkInput();
+	bool isInBounds();
+
 	int getGridRows() const;
 	int getGridCols() const;
 	int getGridCellSize() const;

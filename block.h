@@ -19,6 +19,9 @@ public:
 	Block();
 
 	void Draw();
-	std::vector<Position> getCellPositions();
+	std::vector<Position> getCellPositions ();
 	void move(int row, int col);
+	void moveLeft();
+	void moveDown();
+	void moveRight();
 };

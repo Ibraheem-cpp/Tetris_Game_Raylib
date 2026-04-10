@@ -43,6 +43,12 @@ void Grid::DrawGrid() const {
 	}
 }
 
+bool Grid::isOutOfBounds(int row, int col) {
+	if (row >= 0 && row < this->numRows && col >= 0 && col < this->numCols) {
+		return false;
+	}
+	return true;
+}
 
 int Grid::getRows() const {
 	return this->numRows;

@@ -30,3 +30,15 @@ void Block::move(int row, int col) {
 	this->rowOffset += row;
 	this->columnOffset += col;
 }
+
+void Block::moveLeft() {
+	move(0, -1);
+}
+
+void Block::moveDown() {
+	move(1, 0);
+}
+
+void Block::moveRight() {
+	move(0, 1);
+}
