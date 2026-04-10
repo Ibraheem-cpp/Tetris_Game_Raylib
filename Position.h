@@ -10,4 +10,5 @@ public:
 
 	int getRow();
 	int getColumn();
+	void updatePosition(int row, int col);
 };

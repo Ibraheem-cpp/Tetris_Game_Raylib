@@ -11,8 +11,22 @@ Block::Block() {
 }
 
 void Block::Draw() {
-	std::vector<Position> tiles = this->cells[this->rotationState];
+	std::vector<Position> tiles = getCellPositions();
 	for (Position item : tiles) {
 		DrawRectangle(item.getColumn() * this->cellSize + 1, item.getRow() * this->cellSize + 1, this->cellSize - 1, this->cellSize - 1, this->colors[this->id]);
 	}
+}
+
+std::vector<Position> Block::getCellPositions() {
+	std::vector<Position> tiles = this->cells[this->rotationState];
+	for (Position& item : tiles) {
+		item.updatePosition(this->rowOffset, this->columnOffset);
+	}
+
+	return tiles;
+}
+
+void Block::move(int row, int col) {
+	this->rowOffset += row;
+	this->columnOffset += col;
 }

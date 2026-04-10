@@ -15,3 +15,8 @@ int Position::getRow() {
 int Position::getColumn() {
 	return this->column;
 }
+
+void Position::updatePosition(int row, int col) {
+	this->row += row;
+	this->column += col;
+}

@@ -8,7 +8,7 @@ private:
 	int numCols = 0;
 	int cellSize = 0;
 	int** grid;
-	std::vector<Color> colors = { DARKGRAY, BLUE, YELLOW, PINK, GREEN, ORANGE, PURPLE, RED };
+	std::vector<Color> colors = { BLACK, BLUE, YELLOW, PINK, GREEN, ORANGE, PURPLE, RED };
 public:
 	Grid();
 	void initializeGrid();
