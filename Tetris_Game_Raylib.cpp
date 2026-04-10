@@ -1,27 +1,23 @@
 #include <iostream>
 #include <vector>
 #include "raylib.h"
-#include "grid.h"
-#include "tetrominos.h"
+#include "game.h"
 using namespace std;
 
 int main()
 {
-    Grid grid = Grid();
-    const int Height = grid.getCellSize() * grid.getRows();
-    const int Width = grid.getCellSize() * grid.getCols();
+    Game game;
+    const int Height = game.getGridCellSize() * game.getGridRows();
+    const int Width = game.getGridCellSize() * game.getGridCols();
 
     SetTargetFPS(60);
     InitWindow(Width, Height, "Tetris Game");
-
-    S_Tetromino block;
 
     while (!WindowShouldClose()) {
 
         BeginDrawing();
         ClearBackground(DARKBLUE);
-        grid.DrawGrid();
-        block.Draw();
+        game.Draw();
         EndDrawing();
     }
 

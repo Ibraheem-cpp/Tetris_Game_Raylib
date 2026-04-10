@@ -124,6 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="block.cpp" />
+    <ClCompile Include="game.cpp" />
     <ClCompile Include="grid.cpp" />
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="Tetris_Game_Raylib.cpp" />
@@ -131,6 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="block.h" />
+    <ClInclude Include="game.h" />
     <ClInclude Include="grid.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="tetrominos.h" />
