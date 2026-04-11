@@ -12,6 +12,11 @@ private:
 	Block nextBlock;
 	std::vector<Block> blocks;
 
+	void MoveBlockLeft();
+	void MoveBlockRight();
+	void MoveBlockDown();
+	void RotateBlock();
+
 public:
 	Game();
 

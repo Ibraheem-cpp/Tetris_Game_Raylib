@@ -31,6 +31,22 @@ void Block::move(int row, int col) {
 	this->columnOffset += col;
 }
 
+void Block::changeRotationState() {
+	if (this->id != 4) {
+		this->rotationState++;
+		if (this->rotationState == 4) {
+			this->rotationState = 0;
+		}
+	}
+}
+
+void Block::undoRotation() {
+	this->rotationState--;
+	if (this->rotationState == -1) {
+		rotationState = 3;
+	}
+}
+
 void Block::moveLeft() {
 	move(0, -1);
 }
