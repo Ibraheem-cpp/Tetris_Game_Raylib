@@ -16,6 +16,9 @@ int main()
     while (!WindowShouldClose()) {
 
         game.checkInput();
+        if (game.eventTriggered(0.3)) {
+            game.MoveBlockDown();
+        }
 
         BeginDrawing();
         ClearBackground(DARKBLUE);

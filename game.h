@@ -8,13 +8,11 @@
 class Game {
 private:
 	Grid grid;
+	double lastUpdateTime = 0;
 	Block currentBlock;
 	Block nextBlock;
 	std::vector<Block> blocks;
 
-	void MoveBlockLeft();
-	void MoveBlockRight();
-	void MoveBlockDown();
 	void RotateBlock();
 
 public:
@@ -25,6 +23,11 @@ public:
 	void Draw();
 	void checkInput();
 	bool isInBounds();
+	bool eventTriggered(double interval);
+
+	void MoveBlockLeft();
+	void MoveBlockRight();
+	void MoveBlockDown();
 
 	int getGridRows() const;
 	int getGridCols() const;

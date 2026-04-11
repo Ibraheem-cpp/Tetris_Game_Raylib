@@ -15,6 +15,15 @@ std::vector<Block> Game::getAllBlocks() {
 	return { I_Tetromino(), S_Tetromino(), T_Tetromino(), L_Tetromino(), J_Tetromino(), O_Tetromino(), Z_Tetromino() };
 }
 
+bool Game::eventTriggered(double interval) {
+	double currentTime = GetTime();
+	if (currentTime - lastUpdateTime > interval) {
+		lastUpdateTime = currentTime;
+		return true;
+	}
+	return false;
+}
+
 Block Game::getRandomBlock() {
 	if (this->blocks.empty()) {
 		this->blocks = getAllBlocks();
