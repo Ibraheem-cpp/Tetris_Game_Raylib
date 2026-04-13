@@ -26,6 +26,7 @@ public:
 	void checkInput();
 	bool isInBounds();
 	bool eventTriggered(double interval);
+	void checkCompletedRows();
 
 	void MoveBlockLeft();
 	void MoveBlockRight();

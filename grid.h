@@ -9,7 +9,12 @@ private:
 	int cellSize = 0;
 	int** grid;
 	std::vector<Color> colors = { BLACK, BLUE, YELLOW, PINK, GREEN, ORANGE, PURPLE, RED };
-public:
+
+	bool isRowFull(int row) const;
+	
+	void emptyCurrentRow(int row);
+
+public: 
 	Grid();
 	void initializeGrid();
 	void printGrid() const;
@@ -17,6 +22,8 @@ public:
 	bool isOutOfBounds(int row, int col);
 	void changeGridCellsColor(int row, int col, int id);
 	bool isCellEmpty(int row, int col) const;
+	int emptyCompletedRows();
+	void moveAllRowsDown(int row);
 
 	int getRows() const;
 	int getCols() const;

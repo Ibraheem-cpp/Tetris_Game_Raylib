@@ -61,6 +61,43 @@ bool Grid::isCellEmpty(int row, int col) const {
 	return false;
 }
 
+bool Grid::isRowFull(int row) const {
+	for (int col = 0; col < this->numCols; col++) {
+		if (grid[row][col] == 0) {
+			return false;
+		}
+	}
+	return true;
+}
+
+int Grid::emptyCompletedRows() {
+	int count = 0;
+	for (int row = this->numRows - 1; row >= 0; row--) {
+		if (isRowFull(row)) {
+			count++;
+			emptyCurrentRow(row);
+			moveAllRowsDown(row);
+			row++;
+		}
+	}
+
+	return count;
+}
+
+void Grid::moveAllRowsDown(int row) {
+	for (int r = row; r > 0; r--) {
+		for (int c = 0; c < this->numCols; c++) {
+			grid[r][c] = grid[r - 1][c];
+		}
+	}
+}
+
+void Grid::emptyCurrentRow(int row) {
+	for (int col = 0; col < this->numCols; col++) {
+		grid[row][col] = 0;
+	}
+}
+
 int Grid::getRows() const {
 	return this->numRows;
 }

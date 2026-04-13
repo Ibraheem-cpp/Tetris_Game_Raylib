@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 #include "raylib.h"
 #include "game.h"
 using namespace std;
@@ -18,7 +17,10 @@ int main()
         game.checkInput();
         if (game.eventTriggered(0.2)) {
             game.MoveBlockDown();
+            
         }
+
+        game.checkCompletedRows();
 
         BeginDrawing();
         ClearBackground(DARKBLUE);

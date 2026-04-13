@@ -116,6 +116,10 @@ void Game::lockBlock() {
 	nextBlock = getRandomBlock();
 }
 
+void Game::checkCompletedRows() {
+	grid.emptyCompletedRows();
+}
+
 int Game::getGridCellSize() const {
 	return this->grid.getCellSize();
 }
