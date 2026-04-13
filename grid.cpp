@@ -110,6 +110,14 @@ int Grid::getCellSize() const {
 	return this->cellSize;
 }
 
+void Grid::resetBoard() {
+	for (int row = 0; row < this->numRows; row++) {
+		for (int col = 0; col < this->numCols; col++) {
+			grid[row][col] = 0;
+		}
+	}
+}
+
 Grid::~Grid() {
 	for (int i = 0; i < this->numRows; i++) {
 		delete[] this->grid[i];

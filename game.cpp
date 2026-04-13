@@ -9,6 +9,7 @@ Game::Game() {
 	this->blocks = getAllBlocks();
 	currentBlock = getRandomBlock();
 	nextBlock = getRandomBlock();
+	GameOver = false;
 }
 
 std::vector<Block> Game::getAllBlocks() {
@@ -40,6 +41,10 @@ void Game::Draw() {
 }
 
 void Game::checkInput() {
+	if (GameOver) {
+		if (IsKeyPressed(KEY_A) || IsKeyPressed(KEY_S) || IsKeyPressed(KEY_D) || IsKeyPressed(KEY_W)) { GameOver = false; reset(); }
+	}
+
 	if (IsKeyPressed(KEY_A)) {
 		MoveBlockLeft();
 	}
@@ -65,31 +70,39 @@ bool Game::isInBounds() {
 }
 
 void Game::MoveBlockLeft() {
-	this->currentBlock.moveLeft();
-	if ((!isInBounds()) || (!blockFits())) {
-		this->currentBlock.move(0, 1);
+	if (!GameOver) {
+		this->currentBlock.moveLeft();
+		if ((!isInBounds()) || (!blockFits())) {
+			this->currentBlock.move(0, 1);
+		}
 	}
 }
 
 void Game::MoveBlockDown() {
-	this->currentBlock.moveDown();
-	if ((!isInBounds()) || (!blockFits())) {
-		this->currentBlock.move(-1, 0);
-		lockBlock();
+	if (!GameOver) {
+		this->currentBlock.moveDown();
+		if ((!isInBounds()) || (!blockFits())) {
+			this->currentBlock.move(-1, 0);
+			lockBlock();
+		}
 	}
 }
 
 void Game::MoveBlockRight() {
-	this->currentBlock.moveRight();
-	if ((!isInBounds()) || (!blockFits())) {
-		this->currentBlock.move(0, -1);
+	if (!GameOver) {
+		this->currentBlock.moveRight();
+		if ((!isInBounds()) || (!blockFits())) {
+			this->currentBlock.move(0, -1);
+		}
 	}
 }
 
 void Game::RotateBlock () {
-	this->currentBlock.changeRotationState();
-	if ((!isInBounds()) || (!blockFits())) {
-		this->currentBlock.undoRotation();
+	if (!GameOver) {
+		this->currentBlock.changeRotationState();
+		if ((!isInBounds()) || (!blockFits())) {
+			this->currentBlock.undoRotation();
+		}
 	}
 }
 
@@ -113,6 +126,9 @@ void Game::lockBlock() {
 	}
 
 	currentBlock = nextBlock;
+	if (!blockFits()) {
+		GameOver = true;
+	}
 	nextBlock = getRandomBlock();
 }
 
@@ -130,4 +146,10 @@ int Game::getGridRows() const {
 
 int Game::getGridCols() const {
 	return this->grid.getCols();
+}
+
+void Game::reset() {
+	grid.resetBoard();
+	currentBlock = getRandomBlock();
+	nextBlock = getRandomBlock();
 }

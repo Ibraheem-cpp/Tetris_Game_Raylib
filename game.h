@@ -12,10 +12,12 @@ private:
 	Block currentBlock;
 	Block nextBlock;
 	std::vector<Block> blocks;
+	bool GameOver = false;
 
 	void RotateBlock();
 	void lockBlock();
 	bool blockFits();
+	void reset();
 
 public:
 	Game();

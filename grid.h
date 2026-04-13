@@ -29,5 +29,7 @@ public:
 	int getCols() const;
 	int getCellSize() const;
 
+	void resetBoard();
+
 	~Grid();
 };
