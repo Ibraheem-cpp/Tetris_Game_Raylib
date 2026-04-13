@@ -54,6 +54,13 @@ void Grid::changeGridCellsColor(int row, int col, int id) {
 	grid[row][col] = id;
 }
 
+bool Grid::isCellEmpty(int row, int col) const {
+	if (grid[row][col] == 0) {
+		return true;
+	}
+	return false;
+}
+
 int Grid::getRows() const {
 	return this->numRows;
 }

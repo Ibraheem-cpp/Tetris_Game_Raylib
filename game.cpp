@@ -66,14 +66,14 @@ bool Game::isInBounds() {
 
 void Game::MoveBlockLeft() {
 	this->currentBlock.moveLeft();
-	if (!isInBounds()) {
+	if ((!isInBounds()) || (!blockFits())) {
 		this->currentBlock.move(0, 1);
 	}
 }
 
 void Game::MoveBlockDown() {
 	this->currentBlock.moveDown();
-	if (!isInBounds()) {
+	if ((!isInBounds()) || (!blockFits())) {
 		this->currentBlock.move(-1, 0);
 		lockBlock();
 	}
@@ -81,17 +81,27 @@ void Game::MoveBlockDown() {
 
 void Game::MoveBlockRight() {
 	this->currentBlock.moveRight();
-	if (!isInBounds()) {
+	if ((!isInBounds()) || (!blockFits())) {
 		this->currentBlock.move(0, -1);
-		
 	}
 }
 
 void Game::RotateBlock () {
 	this->currentBlock.changeRotationState();
-	if (!isInBounds()) {
+	if ((!isInBounds()) || (!blockFits())) {
 		this->currentBlock.undoRotation();
 	}
+}
+
+bool Game::blockFits() {
+	std::vector<Position> tiles = this->currentBlock.getCellPositions();
+	for (Position items : tiles) {
+		if (!grid.isCellEmpty(items.getRow(), items.getColumn())) {
+			return false;
+		}
+	}
+
+	return true;
 }
 
 void Game::lockBlock() {

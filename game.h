@@ -15,6 +15,7 @@ private:
 
 	void RotateBlock();
 	void lockBlock();
+	bool blockFits();
 
 public:
 	Game();

@@ -16,6 +16,7 @@ public:
 	void DrawGrid() const;
 	bool isOutOfBounds(int row, int col);
 	void changeGridCellsColor(int row, int col, int id);
+	bool isCellEmpty(int row, int col) const;
 
 	int getRows() const;
 	int getCols() const;
