@@ -47,6 +47,10 @@ void Block::undoRotation() {
 	}
 }
 
+int Block::getColorID() const {
+	return this->id;
+}
+
 void Block::moveLeft() {
 	move(0, -1);
 }

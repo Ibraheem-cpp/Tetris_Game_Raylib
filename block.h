@@ -26,4 +26,5 @@ public:
 	void moveLeft();
 	void moveDown();
 	void moveRight();
+	int getColorID() const;
 };

@@ -50,6 +50,10 @@ bool Grid::isOutOfBounds(int row, int col) {
 	return true;
 }
 
+void Grid::changeGridCellsColor(int row, int col, int id) {
+	grid[row][col] = id;
+}
+
 int Grid::getRows() const {
 	return this->numRows;
 }

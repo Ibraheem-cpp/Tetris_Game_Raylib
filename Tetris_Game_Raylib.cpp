@@ -16,7 +16,7 @@ int main()
     while (!WindowShouldClose()) {
 
         game.checkInput();
-        if (game.eventTriggered(0.3)) {
+        if (game.eventTriggered(0.2)) {
             game.MoveBlockDown();
         }
 

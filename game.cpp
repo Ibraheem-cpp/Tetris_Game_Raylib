@@ -75,6 +75,7 @@ void Game::MoveBlockDown() {
 	this->currentBlock.moveDown();
 	if (!isInBounds()) {
 		this->currentBlock.move(-1, 0);
+		lockBlock();
 	}
 }
 
@@ -82,6 +83,7 @@ void Game::MoveBlockRight() {
 	this->currentBlock.moveRight();
 	if (!isInBounds()) {
 		this->currentBlock.move(0, -1);
+		
 	}
 }
 
@@ -90,6 +92,18 @@ void Game::RotateBlock () {
 	if (!isInBounds()) {
 		this->currentBlock.undoRotation();
 	}
+}
+
+void Game::lockBlock() {
+	std::vector<Position> tiles = currentBlock.getCellPositions();
+	int colorID = this->currentBlock.getColorID();
+	
+	for (Position items : tiles) {
+		grid.changeGridCellsColor(items.getRow(), items.getColumn(), colorID);
+	}
+
+	currentBlock = nextBlock;
+	nextBlock = getRandomBlock();
 }
 
 int Game::getGridCellSize() const {

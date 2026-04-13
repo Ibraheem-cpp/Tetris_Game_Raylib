@@ -14,6 +14,7 @@ private:
 	std::vector<Block> blocks;
 
 	void RotateBlock();
+	void lockBlock();
 
 public:
 	Game();
