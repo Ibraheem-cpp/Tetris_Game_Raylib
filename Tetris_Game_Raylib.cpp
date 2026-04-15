@@ -14,6 +14,8 @@ int main()
 
     while (!WindowShouldClose()) {
 
+        UpdateMusicStream(game.bgMusic);
+
         game.checkInput();
         if (game.eventTriggered(0.2)) {
             game.MoveBlockDown();

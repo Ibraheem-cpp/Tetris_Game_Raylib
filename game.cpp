@@ -10,6 +10,16 @@ Game::Game() {
 	currentBlock = getRandomBlock();
 	nextBlock = getRandomBlock();
 	GameOver = false;
+
+	InitAudioDevice();
+	bgMusic = LoadMusicStream("sounds/background.mp3");
+	gameOverSound = LoadSound("sounds/gameover.mp3");
+	rotateBlockSound = LoadSound("sounds/rotateblock.mp3");
+	completeRowSound = LoadSound("sounds/completerow.mp3");
+
+	PlayMusicStream(bgMusic);
+	SetMusicVolume(bgMusic, 0.5f);
+	
 }
 
 std::vector<Block> Game::getAllBlocks() {
@@ -152,4 +162,12 @@ void Game::reset() {
 	grid.resetBoard();
 	currentBlock = getRandomBlock();
 	nextBlock = getRandomBlock();
+}
+
+Game::~Game() {
+	UnloadMusicStream(bgMusic);
+	UnloadSound(gameOverSound);
+	UnloadSound(completeRowSound);
+	UnloadSound(rotateBlockSound);
+	CloseAudioDevice();
 }

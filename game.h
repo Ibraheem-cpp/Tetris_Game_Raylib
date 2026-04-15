@@ -19,8 +19,13 @@ private:
 	bool blockFits();
 	void reset();
 
+	Sound gameOverSound;
+	Sound rotateBlockSound;
+	Sound completeRowSound;
+
 public:
 	Game();
+	Music bgMusic;
 
 	std::vector<Block> getAllBlocks();
 	Block getRandomBlock();
@@ -37,4 +42,6 @@ public:
 	int getGridRows() const;
 	int getGridCols() const;
 	int getGridCellSize() const;
+
+	~Game();
 };
