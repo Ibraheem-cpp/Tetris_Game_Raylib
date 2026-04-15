@@ -18,7 +18,7 @@ Game::Game() {
 	completeRowSound = LoadSound("sounds/completerow.mp3");
 
 	PlayMusicStream(bgMusic);
-	SetMusicVolume(bgMusic, 0.5f);
+	SetMusicVolume(bgMusic, 0.4f);
 	
 }
 
@@ -113,6 +113,9 @@ void Game::RotateBlock () {
 		if ((!isInBounds()) || (!blockFits())) {
 			this->currentBlock.undoRotation();
 		}
+		else {
+			PlaySound(rotateBlockSound);
+		}
 	}
 }
 
@@ -138,12 +141,15 @@ void Game::lockBlock() {
 	currentBlock = nextBlock;
 	if (!blockFits()) {
 		GameOver = true;
+		PlaySound(gameOverSound);
 	}
 	nextBlock = getRandomBlock();
 }
 
 void Game::checkCompletedRows() {
-	grid.emptyCompletedRows();
+	if (grid.emptyCompletedRows() > 0) {
+		PlaySound(completeRowSound);
+	}
 }
 
 int Game::getGridCellSize() const {
