@@ -10,7 +10,7 @@ int main()
     const int Width = game.getGridCellSize() * game.getGridCols();
     
     SetTargetFPS(60);
-    InitWindow(Width, Height, "Tetris Game");
+    InitWindow(Width + 200, Height + 20, "Tetris Game");
 
     while (!WindowShouldClose()) {
 
