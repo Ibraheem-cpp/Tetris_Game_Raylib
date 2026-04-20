@@ -27,6 +27,18 @@ int main()
         BeginDrawing();
         ClearBackground(DARKBLUE);
         game.Draw();
+
+        DrawText("SCORE", Width + 35, 30, 40, WHITE);
+        DrawRectangleRounded({ float(Width) + 25, 80, 160, 60 }, 0.4, 4, SKYBLUE);
+
+        DrawText("Next Block", Width + 25, (Height / 2)-100, 30, WHITE);
+        DrawRectangleRounded({ float(Width) + 25, float(Height)/2-50, 160, 160 }, 0.4, 4, SKYBLUE);
+
+        if (game.isGameOver()) {
+            DrawText("Game Over", Width + 30, Height - 120, 30, MAROON);
+            PauseMusicStream(game.bgMusic);
+        }
+
         EndDrawing();
     }
 

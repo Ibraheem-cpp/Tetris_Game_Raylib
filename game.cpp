@@ -152,6 +152,10 @@ void Game::checkCompletedRows() {
 	}
 }
 
+bool Game::isGameOver() const {
+	return this->GameOver;
+}
+
 int Game::getGridCellSize() const {
 	return this->grid.getCellSize();
 }
@@ -168,6 +172,7 @@ void Game::reset() {
 	grid.resetBoard();
 	currentBlock = getRandomBlock();
 	nextBlock = getRandomBlock();
+	ResumeMusicStream(bgMusic);
 }
 
 Game::~Game() {

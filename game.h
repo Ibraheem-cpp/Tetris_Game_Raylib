@@ -43,5 +43,7 @@ public:
 	int getGridCols() const;
 	int getGridCellSize() const;
 
+	bool isGameOver() const;
+
 	~Game();
 };
