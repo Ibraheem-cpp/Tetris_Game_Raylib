@@ -10,6 +10,7 @@ Game::Game() {
 	currentBlock = getRandomBlock();
 	nextBlock = getRandomBlock();
 	GameOver = false;
+	score = 0;
 
 	InitAudioDevice();
 	bgMusic = LoadMusicStream("sounds/background.mp3");
@@ -52,7 +53,10 @@ void Game::Draw() {
 
 void Game::checkInput() {
 	if (GameOver) {
-		if (IsKeyPressed(KEY_A) || IsKeyPressed(KEY_S) || IsKeyPressed(KEY_D) || IsKeyPressed(KEY_W)) { GameOver = false; reset(); }
+		if (IsKeyPressed(KEY_A) || IsKeyPressed(KEY_S) || IsKeyPressed(KEY_D) || IsKeyPressed(KEY_W)) { 
+			GameOver = false;
+			reset(); 
+		}
 	}
 
 	if (IsKeyPressed(KEY_A)) {
@@ -60,6 +64,7 @@ void Game::checkInput() {
 	}
 	if (IsKeyPressed(KEY_S)) {
 		MoveBlockDown();
+		this->score++;
 	}
 	if (IsKeyPressed(KEY_D)) {
 		MoveBlockRight();
@@ -147,8 +152,10 @@ void Game::lockBlock() {
 }
 
 void Game::checkCompletedRows() {
-	if (grid.emptyCompletedRows() > 0) {
+	int completed_rows = grid.emptyCompletedRows();
+	if (completed_rows > 0) {
 		PlaySound(completeRowSound);
+		this->score += completed_rows * 100;
 	}
 }
 
@@ -168,8 +175,13 @@ int Game::getGridCols() const {
 	return this->grid.getCols();
 }
 
+int Game::getScore() const {
+	return this->score;
+}
+
 void Game::reset() {
 	grid.resetBoard();
+	this->score = 0;
 	currentBlock = getRandomBlock();
 	nextBlock = getRandomBlock();
 	ResumeMusicStream(bgMusic);

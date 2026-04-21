@@ -13,6 +13,7 @@ private:
 	Block nextBlock;
 	std::vector<Block> blocks;
 	bool GameOver = false;
+	int score = 0;
 
 	void RotateBlock();
 	void lockBlock();
@@ -42,6 +43,7 @@ public:
 	int getGridRows() const;
 	int getGridCols() const;
 	int getGridCellSize() const;
+	int getScore() const;
 
 	bool isGameOver() const;
 
