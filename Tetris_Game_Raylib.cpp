@@ -38,6 +38,7 @@ int main()
 
         DrawText("Next Block", Width + 25, (Height / 2)-100, 30, WHITE);
         DrawRectangleRounded({ float(Width) + 25, float(Height)/2-50, 160, 160 }, 0.4, 4, SKYBLUE);
+        game.drawNextBlock(Width-30, (Height / 2));
 
         if (game.isGameOver()) {
             DrawText("Game Over", Width + 30, Height - 120, 30, MAROON);

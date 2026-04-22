@@ -10,10 +10,10 @@ Block::Block() {
 	this->rotationState = 0;
 }
 
-void Block::Draw() {
+void Block::Draw(int offsetX, int offsetY) {
 	std::vector<Position> tiles = getCellPositions();
 	for (Position item : tiles) {
-		DrawRectangle(item.getColumn() * this->cellSize + 11, item.getRow() * this->cellSize + 11, this->cellSize - 1, this->cellSize - 1, this->colors[this->id]);
+		DrawRectangle(item.getColumn() * this->cellSize + offsetX, item.getRow() * this->cellSize + offsetY, this->cellSize - 1, this->cellSize - 1, this->colors[this->id]);
 	}
 }
 

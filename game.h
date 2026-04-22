@@ -39,6 +39,7 @@ public:
 	void MoveBlockLeft();
 	void MoveBlockRight();
 	void MoveBlockDown();
+	void drawNextBlock(int offsetX, int offsetY);
 
 	int getGridRows() const;
 	int getGridCols() const;

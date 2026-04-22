@@ -18,7 +18,7 @@ protected:
 public:
 	Block();
 
-	void Draw();
+	void Draw(int offsetX, int offsetY);
 	std::vector<Position> getCellPositions ();
 	void move(int row, int col);
 	void changeRotationState();

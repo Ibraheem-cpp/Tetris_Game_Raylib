@@ -48,7 +48,7 @@ Block Game::getRandomBlock() {
 
 void Game::Draw() {
 	this->grid.DrawGrid();
-	this->currentBlock.Draw();
+	this->currentBlock.Draw(11, 11);
 }
 
 void Game::checkInput() {
@@ -64,7 +64,9 @@ void Game::checkInput() {
 	}
 	if (IsKeyPressed(KEY_S)) {
 		MoveBlockDown();
-		this->score++;
+		if (!GameOver) {
+			this->score++;
+		}
 	}
 	if (IsKeyPressed(KEY_D)) {
 		MoveBlockRight();
@@ -157,6 +159,17 @@ void Game::checkCompletedRows() {
 		PlaySound(completeRowSound);
 		this->score += completed_rows * 100;
 	}
+}
+
+void Game::drawNextBlock(int offsetX, int offsetY) {
+	if (this->nextBlock.getColorID() == 3) {
+		offsetX -= 15;
+		offsetY += 15;
+	}
+	if (this->nextBlock.getColorID() == 4) {
+		offsetX -= 15;
+	}
+	this->nextBlock.Draw(offsetX, offsetY);
 }
 
 bool Game::isGameOver() const {
