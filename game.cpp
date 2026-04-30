@@ -157,7 +157,18 @@ void Game::checkCompletedRows() {
 	int completed_rows = grid.emptyCompletedRows();
 	if (completed_rows > 0) {
 		PlaySound(completeRowSound);
-		this->score += completed_rows * 100;
+		if (completed_rows == 1) {
+			this->score += 100;
+		}
+		else if (completed_rows == 2) {
+			this->score += 400;
+		}
+		else if (completed_rows == 3) {
+			this->score += 600;
+		}
+		else if (completed_rows == 4) {
+			this->score += 1200;
+		}
 	}
 }
 
