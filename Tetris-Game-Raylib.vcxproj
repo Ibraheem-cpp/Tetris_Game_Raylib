@@ -137,6 +137,9 @@
     <ClInclude Include="Position.h" />
     <ClInclude Include="tetrominos.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="high_score.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

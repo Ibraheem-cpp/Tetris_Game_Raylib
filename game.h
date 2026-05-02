@@ -14,12 +14,14 @@ private:
 	std::vector<Block> blocks;
 	bool GameOver = false;
 	int score = 0;
+	int highestScore = 0;
 
 	void RotateBlock();
 	void lockBlock();
 	bool blockFits();
 	void reset();
-
+	void loadHighestScore();
+	
 	Sound gameOverSound;
 	Sound rotateBlockSound;
 	Sound completeRowSound;
@@ -40,6 +42,7 @@ public:
 	void MoveBlockRight();
 	void MoveBlockDown();
 	void drawNextBlock(int offsetX, int offsetY);
+	void checkHighestScore();
 
 	int getGridRows() const;
 	int getGridCols() const;

@@ -43,6 +43,7 @@ int main()
         if (game.isGameOver()) {
             DrawText("Game Over", Width + 30, Height - 120, 30, MAROON);
             PauseMusicStream(game.bgMusic);
+            game.checkHighestScore();
         }
 
         EndDrawing();

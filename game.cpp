@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <random>
 #include <ctime>
@@ -11,6 +12,7 @@ Game::Game() {
 	nextBlock = getRandomBlock();
 	GameOver = false;
 	score = 0;
+	loadHighestScore();
 
 	InitAudioDevice();
 	bgMusic = LoadMusicStream("sounds/background.mp3");
@@ -209,6 +211,23 @@ void Game::reset() {
 	currentBlock = getRandomBlock();
 	nextBlock = getRandomBlock();
 	ResumeMusicStream(bgMusic);
+}
+
+void Game::loadHighestScore() {
+	std::ifstream highScore;
+	highScore.open("high_score.txt");
+	highScore >> this->highestScore;
+	highScore.close();
+}
+
+void Game::checkHighestScore() {
+	if (this->score > this->highestScore) {
+		std::ofstream highScore;
+		highScore.open("high_score.txt");
+		highScore << this->score;
+		this->highestScore = this->score;
+		highScore.close();
+	}
 }
 
 Game::~Game() {
