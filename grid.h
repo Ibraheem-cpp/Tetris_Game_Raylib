@@ -19,7 +19,7 @@ public:
 	void initializeGrid();
 	void printGrid() const;
 	void DrawGrid() const;
-	bool isOutOfBounds(int row, int col);
+	bool isOutOfBounds(int row, int col) const;
 	void changeGridCellsColor(int row, int col, int id);
 	bool isCellEmpty(int row, int col) const;
 	int emptyCompletedRows();
