@@ -48,6 +48,7 @@ public:
 	int getGridCols() const;
 	int getGridCellSize() const;
 	int getScore() const;
+	int getHighestScore() const;
 
 	bool isGameOver() const;
 

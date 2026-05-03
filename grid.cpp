@@ -43,7 +43,7 @@ void Grid::DrawGrid() const {
 	}
 }
 
-bool Grid::isOutOfBounds(int row, int col) {
+bool Grid::isOutOfBounds(int row, int col) const {
 	if (row >= 0 && row < this->numRows && col >= 0 && col < this->numCols) {
 		return false;
 	}

@@ -11,7 +11,7 @@ private:
 	std::vector<Color> colors = { BLACK, BLUE, YELLOW, PINK, GREEN, ORANGE, PURPLE, RED };
 
 	bool isRowFull(int row) const;
-	
+	void moveAllRowsDown(int row);
 	void emptyCurrentRow(int row);
 
 public: 
@@ -23,8 +23,7 @@ public:
 	void changeGridCellsColor(int row, int col, int id);
 	bool isCellEmpty(int row, int col) const;
 	int emptyCompletedRows();
-	void moveAllRowsDown(int row);
-
+	
 	int getRows() const;
 	int getCols() const;
 	int getCellSize() const;

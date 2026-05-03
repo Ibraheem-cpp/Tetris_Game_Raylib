@@ -40,14 +40,23 @@ int main()
         DrawRectangleRounded({ float(Width) + 25, float(Height)/2-50, 160, 160 }, 0.4, 4, SKYBLUE);
         game.drawNextBlock(Width-30, (Height / 2));
 
+        DrawText("Highest Score", Width + 20, Height - 90, 25, WHITE);
+        DrawRectangleRounded({ float(Width) + 25, float(Height) - 55, 160, 60}, 0.4, 4, SKYBLUE);
+        std::string highScoreStr = std::to_string(game.getHighestScore());
+        int highScoreWidth = MeasureText(highScoreStr.c_str(), 40);
+        int highScoreX = Width + 20 + (160 / 2) - (highScoreWidth / 2);
+        int highScoreY = (Height - 55) + (60 / 2) - (40 / 2);
+        DrawText(TextFormat("%d", game.getHighestScore()), highScoreX, highScoreY, 40, WHITE);
+
         if (game.isGameOver()) {
-            DrawText("Game Over", Width + 30, Height - 120, 30, MAROON);
+            DrawText("Game Over", Width + 30, Height - 150, 30, MAROON);
             PauseMusicStream(game.bgMusic);
             game.checkHighestScore();
         }
 
         EndDrawing();
     }
+    game.checkHighestScore();
 
     CloseWindow();
 

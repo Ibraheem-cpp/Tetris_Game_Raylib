@@ -58,6 +58,7 @@ void Game::checkInput() {
 		if (IsKeyPressed(KEY_A) || IsKeyPressed(KEY_S) || IsKeyPressed(KEY_D) || IsKeyPressed(KEY_W)) { 
 			GameOver = false;
 			reset(); 
+			return;
 		}
 	}
 
@@ -205,6 +206,10 @@ int Game::getScore() const {
 	return this->score;
 }
 
+int Game::getHighestScore() const {
+	return this->highestScore;
+}
+
 void Game::reset() {
 	grid.resetBoard();
 	this->score = 0;
@@ -216,8 +221,10 @@ void Game::reset() {
 void Game::loadHighestScore() {
 	std::ifstream highScore;
 	highScore.open("high_score.txt");
-	highScore >> this->highestScore;
-	highScore.close();
+	if (highScore.is_open()) {
+		highScore >> this->highestScore;
+		highScore.close();
+	}
 }
 
 void Game::checkHighestScore() {
