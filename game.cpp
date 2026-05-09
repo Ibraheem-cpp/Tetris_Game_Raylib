@@ -4,6 +4,7 @@
 #include <random>
 #include <ctime>
 #include "game.h"
+#include "raylib.h"
 
 Game::Game() {
 	srand(time(0));
@@ -14,15 +15,22 @@ Game::Game() {
 	score = 0;
 	loadHighestScore();
 
+	int w = getGridCellSize() * getGridCols();
+	int h = getGridCellSize() * getGridRows();
+	playButton.setAttributes(w / 2.0, h / 2.0, "PLAY", -60, 255);
+	exitButton.setAttributes(w / 2.0, h / 2.0, "QUIT", 80, 255);
+}
+
+void Game::loadAssets() {
 	InitAudioDevice();
 	bgMusic = LoadMusicStream("sounds/background.mp3");
 	gameOverSound = LoadSound("sounds/gameover.mp3");
 	rotateBlockSound = LoadSound("sounds/rotateblock.mp3");
 	completeRowSound = LoadSound("sounds/completerow.mp3");
+	menuBG = LoadTexture("assets/menuBG.png");
 
 	PlayMusicStream(bgMusic);
 	SetMusicVolume(bgMusic, 0.4f);
-	
 }
 
 std::vector<Block> Game::getAllBlocks() {
@@ -51,6 +59,14 @@ Block Game::getRandomBlock() {
 void Game::Draw() {
 	this->grid.DrawGrid();
 	this->currentBlock.Draw(11, 11);
+}
+
+void Game::drawMenu() {
+	DrawTexture(menuBG, 0, 0, WHITE);
+	playButton.Draw();
+	playButton.isHovering();
+	exitButton.Draw();
+	exitButton.isHovering();
 }
 
 void Game::checkInput() {
@@ -237,10 +253,25 @@ void Game::checkHighestScore() {
 	}
 }
 
+bool Game::isPlayButtonClicked() {
+	if (playButton.isClicked()) {
+		reset();
+		return true;
+	}
+	return false;
+}
+
+bool Game::isExitButtonClicked() {
+	if (exitButton.isClicked()) { return true; }
+	return false;
+}
+
+
 Game::~Game() {
 	UnloadMusicStream(bgMusic);
 	UnloadSound(gameOverSound);
 	UnloadSound(completeRowSound);
 	UnloadSound(rotateBlockSound);
+	UnloadTexture(menuBG);
 	CloseAudioDevice();
 }

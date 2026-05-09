@@ -12,47 +12,75 @@ int main()
     
     SetTargetFPS(60);
     InitWindow(Width + 200, Height + 20, "Tetris Game");
+    enum GameState { MENU, PLAYING, EXIT };
+    GameState state = MENU;
+    SetExitKey(KEY_NULL);
+    game.loadAssets();
 
-    while (!WindowShouldClose()) {
+    while (!WindowShouldClose() && state != EXIT) {
 
         UpdateMusicStream(game.bgMusic);
 
-        game.checkInput();
-        if (game.eventTriggered(0.2)) {
-            game.MoveBlockDown();
+        if (state == MENU) {
+            if (game.isPlayButtonClicked()) {
+                state = PLAYING;
+            }
+            if (game.isExitButtonClicked()) {
+                state = EXIT;
+            }
         }
 
-        game.checkCompletedRows();
 
-        BeginDrawing();
-        ClearBackground(DARKBLUE);
-        game.Draw();
+        if (state == PLAYING) {
+            if (IsKeyPressed(KEY_ESCAPE)) {
+                state = MENU;
+            }
 
-        /*DrawText("SCORE", Width + 35, 30, 40, WHITE);
-        DrawRectangleRounded({ float(Width) + 25, 80, 160, 60 }, 0.4, 4, SKYBLUE);
-        std::string scoreStr = std::to_string(game.getScore());
-        int scoreWidth = MeasureText(scoreStr.c_str(), 40);
-        int scoreX = Width + 25 + (160 / 2) - (scoreWidth / 2);
-        int scoreY = 80 + (60 / 2) - (40 / 2);
-        DrawText(TextFormat("%d", game.getScore()), scoreX, scoreY, 40, WHITE);
+            game.checkInput();
+            if (game.eventTriggered(0.2)) {
+                game.MoveBlockDown();
+            }
 
-        DrawText("Next Block", Width + 25, (Height / 2)-100, 30, WHITE);
-        DrawRectangleRounded({ float(Width) + 25, float(Height)/2-50, 160, 160 }, 0.4, 4, SKYBLUE);
-        game.drawNextBlock(Width-30, (Height / 2));
+            game.checkCompletedRows();
+        }
 
-        DrawText("Highest Score", Width + 20, Height - 90, 25, WHITE);
-        DrawRectangleRounded({ float(Width) + 25, float(Height) - 55, 160, 60}, 0.4, 4, SKYBLUE);
-        std::string highScoreStr = std::to_string(game.getHighestScore());
-        int highScoreWidth = MeasureText(highScoreStr.c_str(), 40);
-        int highScoreX = Width + 20 + (160 / 2) - (highScoreWidth / 2);
-        int highScoreY = (Height - 55) + (60 / 2) - (40 / 2);
-        DrawText(TextFormat("%d", game.getHighestScore()), highScoreX, highScoreY, 40, WHITE);
+            BeginDrawing();
+            ClearBackground(DARKBLUE);
 
-        if (game.isGameOver()) {
-            DrawText("Game Over", Width + 30, Height - 150, 30, MAROON);
-            PauseMusicStream(game.bgMusic);
-            game.checkHighestScore();
-        }*/
+            if (state == MENU) {
+                game.drawMenu();
+            }
+
+            if (state == PLAYING) {
+                game.Draw();
+
+                DrawText("SCORE", Width + 35, 30, 40, WHITE);
+                DrawRectangleRounded({ float(Width) + 25, 80, 160, 60 }, 0.4, 4, SKYBLUE);
+                std::string scoreStr = std::to_string(game.getScore());
+                int scoreWidth = MeasureText(scoreStr.c_str(), 40);
+                int scoreX = Width + 25 + (160 / 2) - (scoreWidth / 2);
+                int scoreY = 80 + (60 / 2) - (40 / 2);
+                DrawText(TextFormat("%d", game.getScore()), scoreX, scoreY, 40, WHITE);
+
+                DrawText("Next Block", Width + 25, (Height / 2) - 100, 30, WHITE);
+                DrawRectangleRounded({ float(Width) + 25, float(Height) / 2 - 50, 160, 160 }, 0.4, 4, SKYBLUE);
+                game.drawNextBlock(Width - 30, (Height / 2));
+
+                DrawText("Highest Score", Width + 20, Height - 90, 25, WHITE);
+                DrawRectangleRounded({ float(Width) + 25, float(Height) - 55, 160, 60 }, 0.4, 4, SKYBLUE);
+                std::string highScoreStr = std::to_string(game.getHighestScore());
+                int highScoreWidth = MeasureText(highScoreStr.c_str(), 40);
+                int highScoreX = Width + 20 + (160 / 2) - (highScoreWidth / 2);
+                int highScoreY = (Height - 55) + (60 / 2) - (40 / 2);
+                DrawText(TextFormat("%d", game.getHighestScore()), highScoreX, highScoreY, 40, WHITE);
+
+                if (game.isGameOver()) {
+                    DrawText("Game Over", Width + 30, Height - 150, 30, MAROON);
+                    PauseMusicStream(game.bgMusic);
+                    game.checkHighestScore();
+                }
+            }
+        
 
         EndDrawing();
     }

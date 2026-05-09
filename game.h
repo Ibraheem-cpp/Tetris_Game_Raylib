@@ -1,8 +1,10 @@
 #pragma once
 
 #include "grid.h"
+#include "raylib.h"
 #include "block.h"
 #include "tetrominos.h"
+#include "button.h"
 #include <vector>
 
 class Game {
@@ -25,6 +27,9 @@ private:
 	Sound gameOverSound;
 	Sound rotateBlockSound;
 	Sound completeRowSound;
+	Texture2D menuBG;
+	Button playButton;
+	Button exitButton;
 
 public:
 	Game();
@@ -33,6 +38,7 @@ public:
 	std::vector<Block> getAllBlocks();
 	Block getRandomBlock();
 	void Draw();
+	void drawMenu();
 	void checkInput();
 	bool isInBounds();
 	bool eventTriggered(double interval);
@@ -43,6 +49,7 @@ public:
 	void MoveBlockDown();
 	void drawNextBlock(int offsetX, int offsetY);
 	void checkHighestScore();
+	void loadAssets();
 
 	int getGridRows() const;
 	int getGridCols() const;
@@ -51,6 +58,8 @@ public:
 	int getHighestScore() const;
 
 	bool isGameOver() const;
+	bool isPlayButtonClicked();
+	bool isExitButtonClicked();
 
 	~Game();
 };

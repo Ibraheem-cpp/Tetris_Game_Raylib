@@ -33,6 +33,14 @@ public:
 		this->Py = Py - (this->width/ 2) + heightOffset;
 	}
 
+	void setAttributes(float Px, float Py, string label, float heightOffset, float widthOffset) {
+		this->label = label;
+		this->length = 170;
+		this->width = 100;
+		this->Px = Px - (this->length / 2) + widthOffset;
+		this->Py = Py - (this->width / 2) + heightOffset;
+	}
+
 	void Draw() const {
 		DrawRectangleRounded({ this->Px, this->Py, this->length, this->width }, 0.5, 5, BLACK);
 		int textSize = 50;
