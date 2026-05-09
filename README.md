@@ -45,7 +45,8 @@
 
 **Screenshots**
 
-![Gameplay GIF](gameplay/gameplay.gif)
+![Scrrenshot](gameplay/screenshot2.png)
 
+![Gameplay GIF](gameplay/gameplay.gif)
 
 ![Scrrenshot](gameplay/screenshot1.png)
