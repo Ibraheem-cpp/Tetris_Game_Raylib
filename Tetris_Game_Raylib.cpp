@@ -28,7 +28,7 @@ int main()
         ClearBackground(DARKBLUE);
         game.Draw();
 
-        DrawText("SCORE", Width + 35, 30, 40, WHITE);
+        /*DrawText("SCORE", Width + 35, 30, 40, WHITE);
         DrawRectangleRounded({ float(Width) + 25, 80, 160, 60 }, 0.4, 4, SKYBLUE);
         std::string scoreStr = std::to_string(game.getScore());
         int scoreWidth = MeasureText(scoreStr.c_str(), 40);
@@ -52,7 +52,7 @@ int main()
             DrawText("Game Over", Width + 30, Height - 150, 30, MAROON);
             PauseMusicStream(game.bgMusic);
             game.checkHighestScore();
-        }
+        }*/
 
         EndDrawing();
     }
